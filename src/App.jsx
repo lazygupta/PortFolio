@@ -1,4 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
+import UnderConstruction from "./components/UnderConstruction";
 
 import {
   About,
@@ -17,6 +18,7 @@ const App = () => {
     <BrowserRouter>
       <div className="relative z-0 bg-primary">
         <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
+        <UnderConstruction />
           <Navbar/>
           <Hero/>
         </div>
