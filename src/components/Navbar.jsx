@@ -6,6 +6,29 @@ import { styles } from "../styles";
 import { logo, menu, close } from "../assets";
 
 const Navbar = () => {
+
+  const [isOverlapped, setIsOverlapped] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      // Change this threshold value based on when the navbar should change color
+      if (offset > 50) { // Adjust this value as needed
+        setIsOverlapped(true);
+      } else {
+        setIsOverlapped(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+
   const [active,setActive] = useState('')
 
   const [toggle,setToggle] = useState(false)
@@ -27,7 +50,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className="sm:px-16 px-6 w-full flex items-center py-5 fixed top-0 z-20 bg-primary"
+      className={`sm:px-16 px-6 w-full flex items-center py-5 fixed top-0 z-20 ${isOverlapped ? 'bg-primary' : ''}`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
         <Link
